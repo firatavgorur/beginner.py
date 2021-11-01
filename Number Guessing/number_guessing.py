@@ -1,51 +1,42 @@
-
 import random
 
+welcome = {"welcome the game. press 0 for quit"}
 
-giris = (
+print(welcome)
 
-	"***Number Guessing***\n1 ile 100 Arasında Sayı Giriniz\nÇıkmak için 0 giriniz."
+x = random.randint(0,101)
+hearth = int(input("how many tries do you want: "))
+guess =  int(input("your guess: "))
 
-)
+point  = 100
+counter = 0
+i = 1
 
-x = random.randint(1,100)
-puan = 100
-sayac = 0
+while x != guess:
+    hearth -= 1
+    counter += 1
+    point -= 10
+    if guess not in range(0,101):
+        print("invalid number, enter between 0,101")
+        guess = int(input("your guess: "))
 
-print(giris)
+    elif hearth == 0:
+        print(f"Game over.Your rights is done.Number is {x}")
+        break
+        
+    elif guess == 0:
+        print("Exiting...")
+        break
 
-hak= int(input("Kaç Hak İstiyorsunuz: "))
-sayi = input("Tahmin ettiğiniz sayı:")
+    elif guess > x:
+        print("Down")
+        guess = int(input(f"Wrong. {hearth} right left. Your guess: "))
+    
+    elif guess < x:
+        print("Up")
+        guess = int(input(f"Wrong. {hearth} right left. Your guess: "))
 
-while x != int(sayi):
-	hak -=1
-	sayac +=1
-	puan -=10
-	if int(sayi) not in range(0,101):
-		print("Yanlış sayı! 1 ile 100 arasında tahmin yapınız.")
-		sayi = int(input("Tahmin ettiğiniz sayı:"))
-	
-	elif hak == 0:
-		print(f"Hakkınız bitti! Sayı {x} idi. Yeniden Deneyin.")
-		break
-		
-	elif int(sayi)==0:
-		print("Uygulamadan Çıkılıyor.")
-		break
-	
-	elif int(sayi)>x:
-		print("Aşağı")
-		sayi = int(input(f"{hak} hakkınız kaldı. Tahmin ettiğiniz sayı:"))
-		
-	elif int(sayi)<x:
-		print("Yukarı")
-		sayi = int(input(f"{hak} hakkınız kaldı. Tahmin ettiğiniz sayı:"))
-
-else: 
-	int(sayi)==x
-	print(f"Tebrikler {sayac} denemede bildiniz! Puanınız: {puan}")
-
-
-
-
+else:
+    if guess == x:
+        print(f"!!!!Congratulations you won !!!!! You know in {counter} tries. Your point {point} ")
 
